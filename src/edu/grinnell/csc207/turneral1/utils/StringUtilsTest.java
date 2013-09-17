@@ -51,6 +51,9 @@ public class StringUtilsTest {
     
     // We ran some experiments on nameGame - it works fine!
     
+    // We couldn't get fewestCoinsTest to work - the arrays weren't immutable.
+    // We didn't think that this would be that big of an issue, but it turned
+    //  out to be very hard to deal with.
     @Test
     public void fewestCoinsTest() {
 	assertArrayEquals(new int[]{}, StringUtils.fewestCoins(0));

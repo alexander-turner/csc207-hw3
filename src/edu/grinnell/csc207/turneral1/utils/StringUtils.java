@@ -224,12 +224,9 @@ public class StringUtils {
      *   When value == 0, returns counts. 
      *   counts[length] contains how many coins are used.
      */  
-    public static int[] fewestCoinsSearch(int value, int a, int b, int c, 
-	                                   int d, int[] values, int length){
-	// had to convert at last minute - couldn't make coin array immutable.
-	int bestCounts[] = {a, b, c, d};
-	int counts[]
-	
+    public static int[] fewestCoinsSearch(int value, int[] counts, int[] values,
+	                                   int length){
+	int bestCounts[] = counts;
 	for(int i = length-1; i >= 0; i--){
 		if(value-values[i] == 0){
 		    // the coin is currently being considered
@@ -244,7 +241,7 @@ public class StringUtils {
 		    } // if
 		} // if
 		
-		else if(value-values[i] > 0){
+		if(value-values[i] > 0){
 		    int newCounts[] = counts;
 		    newCounts[i]++;
 		    newCounts = fewestCoinsSearch(value-values[i], newCounts, 
@@ -253,12 +250,6 @@ public class StringUtils {
 			bestCounts = newCounts;
 		} // if
 	} // for
-	
-	System.out.println("BestCounts");
-	for(int i = 0; i <= length; i++)
-	    System.out.print(bestCounts[i] + " ");
-	System.out.println();
-	
 	return bestCounts;
     } // fewestCoinsSearch
 } // StringUtils
